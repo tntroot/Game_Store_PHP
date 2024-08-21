@@ -78,14 +78,17 @@ function genRandStr($length)
 }
 
 // $dataAPIURL = "http://site03.web.digital.gov.tw/113-1-11/PHP";
-$dataAPIURL = "http://localhost/Game_Store";
+// $dataAPIURL = "http://localhost/Game_Store_PHP";
+$dataAPIURL = $_SERVER['DOCUMENT_ROOT']."/Game_Store_PHP";
 
 /** 上傳檔案路徑 */
-$uploadFile = $dataAPIURL. '/uploads/file/';
+$uploadFile = $dataAPIURL. '\\uploads\\file\\';
 /** 上傳圖片路徑 */
-$uploadImg = $dataAPIURL . '/uploads/img/';
+$uploadImg = $dataAPIURL . '\\uploads\\img\\';
 
-$productPath = $dataAPIURL."/uploads/";
+$productPath = "http://localhost/Game_Store_PHP"."/uploads/";
+
+
 
 /** 產生圖片路徑到前端 */
 $genUploadPath = function ($folder, $path) use ($productPath) {

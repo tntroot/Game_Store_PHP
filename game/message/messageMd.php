@@ -32,10 +32,12 @@ if ($action == 'add') {
     $getGameIdRes = $getAccGame["gmaeIdRes"];
     $getAccountRes = $getAccGame["accountRes"];
 
+    $date = date("Y-m-d H:i:s");
+
     $sql = "INSERT INTO `comments` (`game_id`, `user_id`, `text`, `reply`, `created_at`) VALUES (?, ?, ?, ?, ?)";
     // $res = mysqli_execute_query($conn, $sql, [$getGameIdRes["game_id"], $getAccountRes["user_id"], $text, $isreoly, date("Y-m-d H:i:s")]);
     $res = mysqli_prepare($conn, $sql);
-    mysqli_stmt_bind_param($res, "iisid", $getGameIdRes["game_id"], $getAccountRes["user_id"], $text, $isreoly, date("Y-m-d H:i:s"));
+    mysqli_stmt_bind_param($res, "iisid", $getGameIdRes["game_id"], $getAccountRes["user_id"], $text, $isreoly, $date);
     mysqli_stmt_execute($res);
 
     if (!$res) {

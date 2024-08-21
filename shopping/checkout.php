@@ -41,10 +41,11 @@ $genShopHistId = genShopHistId($conn, $getAccountRes["user_id"], $getAccountRes[
 
 /** 新增購買歷史 */
 while($row = mysqli_fetch_assoc($selectCardRes)){
+    $date = date("Y-m-d");
     $insertShopHist = "INSERT INTO `shop_history` VALUES (id, ?, ?, ?, ?, ?, ?)";
     // $insertShopHistRes = mysqli_execute_query($conn, $insertShopHist, [$genShopHistId, $row["game_id"], $row["user_id"], $payment, $row["price"], date("Y-m-d H:i")]);
     $insertShopHistRes = mysqli_prepare($conn, $insertShopHist);
-    mysqli_stmt_bind_param($insertShopHistRes, "siisid", $genShopHistId, $row["game_id"], $row["user_id"], $payment, $row["price"], date("Y-m-d H:i"));
+    mysqli_stmt_bind_param($insertShopHistRes, "siisid", $genShopHistId, $row["game_id"], $row["user_id"], $payment, $row["price"], $date);
     mysqli_stmt_execute($insertShopHistRes);
 }
 

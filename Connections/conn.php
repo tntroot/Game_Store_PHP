@@ -1,14 +1,14 @@
 <?php
 try {
-    // $localhost = "localhost";
-    // $dbUsername = "root";
-    // $dbPassword = "";
-    // $dbName = "fantasy_universe";
+    $localhost = "localhost";
+    $dbUsername = "root";
+    $dbPassword = "";
+    $dbName = "fantasy_universe";
 
-    $localhost = "127.0.0.1";
-    $dbUsername = "113-1-11";
-    $dbPassword = "zpup^*Ff";
-    $dbName = "113-1-11";
+    // $localhost = "127.0.0.1";
+    // $dbUsername = "113-1-11";
+    // $dbPassword = "zpup^*Ff";
+    // $dbName = "113-1-11";
 
     $conn = mysqli_connect($localhost, $dbUsername, $dbPassword, $dbName);
     if (!$conn) {

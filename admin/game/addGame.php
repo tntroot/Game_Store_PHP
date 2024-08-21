@@ -79,11 +79,13 @@ if (!move_uploaded_file($file['tmp_name'], $gen[1])) {
 }
 $newFileArr = $gen[0];
 
+$date = date("Y-m-d");
+
 /** 將遊戲新增至資料庫 */
 $gameSql = "INSERT INTO `game_data` (`name`, `price`, `sale_price`, `img`, `files`, `type`, `date`) VALUES (?, ?, ?, ?, ?, ?, ?)";
 // $result = mysqli_execute_query($conn, $gameSql, [$name, $price, $sale_price, $newIMGArr[0], $gen[0], $type,date("Y-m-d")]);
 $result = mysqli_prepare($conn, $gameSql);
-mysqli_stmt_bind_param($result, "sdsssss", $name, $price, $sale_price, $newIMGArr[0], $newFileArr, $type, date("Y-m-d"));
+mysqli_stmt_bind_param($result, "sdsssss", $name, $price, $sale_price, $newIMGArr[0], $newFileArr, $type, $date);
 mysqli_stmt_execute($result);
 
 
@@ -99,7 +101,7 @@ if($result){
     $game_article_data = "INSERT INTO `game_article_data` VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
     // $game_article_result = mysqli_execute_query($conn, $game_article_data, [$game_id, $content, $system, $cpu, $ram, $display_card, $directX, $rom, date("Y-m-d")]);
     $game_article_result = mysqli_prepare($conn, $game_article_data);
-    mysqli_stmt_bind_param($game_article_result, "issssssss", $game_id, $content, $system, $cpu, $ram, $display_card, $directX, $rom, date("Y-m-d"));
+    mysqli_stmt_bind_param($game_article_result, "issssssss", $game_id, $content, $system, $cpu, $ram, $display_card, $directX, $rom, $date);
     mysqli_stmt_execute($game_article_result);
 }else{
     return_error(400, INSERT_ERROR, null);

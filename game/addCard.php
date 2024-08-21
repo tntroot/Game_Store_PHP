@@ -23,10 +23,12 @@ if(mysqli_num_rows($getCardRes)){
     return_error(410, DATA_EXIST.", 購物車已有該遊戲", null);
 }
 
+$date = date("Y-m-d");
+
 $addCard = "INSERT INTO `shop_cart_data` VALUES (?, ?, ?)";
 // $addCardRes = mysqli_execute_query($conn, $addCard, [$getGameIdData["game_id"],$getAccountData["user_id"] , date("Y-m-d")]);
 $addCardRes = mysqli_prepare($conn, $addCard);
-mysqli_stmt_bind_param($addCardRes, "iis", $getGameIdData["game_id"],$getAccountData["user_id"] , date("Y-m-d"));
+mysqli_stmt_bind_param($addCardRes, "iis", $getGameIdData["game_id"],$getAccountData["user_id"] , $date);
 mysqli_stmt_execute($addCardRes);
 
 if($addCardRes){
